@@ -7,6 +7,7 @@
 """
 
 from .core import judge, make_secret
+from .limitPrint import limitPrint
 
 
 def play(digits=3):
@@ -14,15 +15,12 @@ def play(digits=3):
     print(f"Hit & Blow（{digits} 桁・重複なし）")
 
     # ===== ① 開始時に足す（難易度・あいさつ など）: ここに書く =====
-
+    limit = int(input("上限回数："))    
     tries = 0
     while True:
         guess = input("予想 > ").strip()
 
         # ===== ② 入力コマンドに足す（ヒント など）: ここに書く（import もここに） =====
-        # 例:  from .hint import hint
-        #      if guess == "h":
-        #          print(hint(secret)); continue
 
         if len(guess) != digits or not guess.isdigit():
             print(f"{digits} 桁の数字で入力してね")
@@ -30,6 +28,9 @@ def play(digits=3):
         tries += 1
         hit, blow = judge(secret, guess)
         print(f"  Hit={hit}  Blow={blow}")
+        limitPrint(limit-tries)
+        if limit-tries==0:
+            break
         if hit == digits:
 
             # ===== ③ 勝利時に足す（スコア・履歴 など）: ここに書く =====
