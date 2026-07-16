@@ -11,6 +11,7 @@ from .limitPrint import limitPrint
 
 
 def play(digits=3):
+    digits = int(input("桁数："))
     secret = make_secret(digits)
     print(f"Hit & Blow（{digits} 桁・重複なし）")
 
