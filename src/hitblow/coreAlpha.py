@@ -4,7 +4,10 @@
 """
 
 import random
+import string
 
+DIGITS_CHARSET = "0123456789"
+ALPHA_CHARSET = string.ascii_lowercase
 
 def judge(secret, guess):
     """secret と guess（同じ桁数の文字列）を比べて (hit, blow) を返す。
@@ -17,6 +20,6 @@ def judge(secret, guess):
     return hits, common - hits
 
 
-def make_secret(digits=3):
-    """重複なしの digits 桁の答えを作る。"""
-    return "".join(random.sample("0123456789", digits))
+def make_secret(digits=3, charset=DIGITS_CHARSET):
+    """重複なしの digits 個の文字（charsetから選ぶ）の答えを作る。"""
+    return "".join(random.sample(charset, digits))

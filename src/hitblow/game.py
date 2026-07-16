@@ -10,6 +10,7 @@ from .core import judge, make_secret
 from .limitPrint import limitPrint
 
 
+
 def play(digits=3):
     secret = make_secret(digits)
     print(f"Hit & Blow（{digits} 桁・重複なし）")
