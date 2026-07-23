@@ -34,6 +34,7 @@ def play(digits=3):
     
     tries = 0
     score = 0
+    print("60秒以内にいっぱい正解しよう")
     while True:
         while True:
             try:
