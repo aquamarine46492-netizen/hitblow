@@ -12,7 +12,12 @@ from .time import GameTimer
 
 
 def play(digits=3):
-    digits = int(input("桁数："))
+    while True:
+        try:
+            digits = int(input("桁数："))
+            break  # 成功したらループを抜ける
+        except ValueError:
+            print("エラー：整数を入力してください。")
     secret = make_secret(digits)
     print(f"Hit & Blow（{digits} 桁・重複なし）")
 
