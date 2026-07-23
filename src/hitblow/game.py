@@ -5,27 +5,44 @@
    ペアごとに**別の場所**を直すので、並行作業でも衝突しない。
    import も自分の場所の近くに書くこと（ファイル先頭にまとめない＝衝突回避）。
 """
-
 from .core import judge, make_secret
 from .limitPrint import limitPrint
 from .time import GameTimer
 
 
+
 def play(digits=3):
-    digits = int(input("桁数："))
+    while True:
+        try:
+            digits = int(input("桁数："))
+            break  # 成功したらループを抜ける
+        except ValueError:
+            print("エラー：整数を入力してください。")
     secret = make_secret(digits)
     print(f"Hit & Blow（{digits} 桁・重複なし）")
 
     # ===== ① 開始時に足す（難易度・あいさつ など）: ここに書く =====
+    while True:
+        try:
+            limit = int(input("上限回数: "))
+            break  # 成功したらループを抜ける
+        except ValueError:
+            print("エラー：整数を入力してください。")
     # 別ファイルからタイマー機能をインポートして初期化
     game_timer = GameTimer()
     game_timer.setup()
     
-    limit = int(input("上限回数："))    
     tries = 0
     score = 0
     while True:
-        guess = input("予想 > ").strip()
+        while True:
+            try:
+                guess = input("予想 > ").strip()
+                break
+            except ValueError:
+                print("エラー：整数を入力してください。")
+        
+        
 
         # ===== ② 入力コマンドに足す（ヒント など）: ここに書く（import もここに） =====
 
