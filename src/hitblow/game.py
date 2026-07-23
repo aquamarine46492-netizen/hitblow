@@ -7,10 +7,12 @@
 """
 from .core import judge, make_secret
 from .limitPrint import limitPrint
+from .time import GameTimer
 
 
 
 def play(digits=3):
+    digits = int(input("桁数："))
     secret = make_secret(digits)
     print(f"Hit & Blow（{digits} 桁・重複なし）")
 
@@ -21,7 +23,12 @@ def play(digits=3):
             break  # 成功したらループを抜ける
         except ValueError:
             print("エラー：整数を入力してください。")
+    # 別ファイルからタイマー機能をインポートして初期化
+    game_timer = GameTimer()
+    game_timer.setup()
+    
     tries = 0
+    score = 0
     while True:
         while True:
             try:
@@ -47,5 +54,13 @@ def play(digits=3):
 
             # ===== ③ 勝利時に足す（スコア・履歴 など）: ここに書く =====
 
-            print(f"正解！ {tries} 回で当たり（答え {secret}）")
+            tries = 0
+            score += 1
+            print(f"{score} 回目の正解！ {tries} 回で当たり（答え {secret}）")
+            secret = make_secret(digits)
+        
+        # ===== ① の続き（時間チェック） =====
+        # 時間切れならループを抜ける
+        if game_timer.check_and_print():
             break
+    print(f"score:{score}")
