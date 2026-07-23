@@ -14,7 +14,7 @@ from .time import GameTimer
 def play(digits=3):
     while True:
         try:
-            digits = int(input("桁数："))
+            digits = int(input("桁数(1～10)："))
             break  # 成功したらループを抜ける
         except ValueError:
             print("エラー：整数を入力してください。")

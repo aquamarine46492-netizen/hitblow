@@ -7,7 +7,7 @@ class GameTimer:
 
     def setup(self):
         """① 開始時に呼び出してタイマーを設定する"""
-        self.time_limit = float(input("制限時間（秒）："))
+        self.time_limit = 60.0
         self.start_time = time.time()
 
     def check_and_print(self):
